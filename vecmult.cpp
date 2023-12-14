@@ -4,7 +4,6 @@
 #include <chrono>
 
 int main() {
-    auto start_time = std::chrono::high_resolution_clock::now();
 
     std::fstream inf("vecmult.in");
     std::fstream ouf("vecmult.out");
@@ -22,6 +21,9 @@ int main() {
     {
         inf >> v2[i];
     }
+
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     __m256i * v11 = (__m256i*)v1;
     __m256i * v12 = (__m256i*)v2;
     __m256i * r = (__m256i*)res;
@@ -32,6 +34,9 @@ int main() {
         r++; v11++; v12++;
     }
 
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+
     for (int i = 0; i < n; ++i) {
         ouf << res[i] << " ";
     }
@@ -40,9 +45,6 @@ int main() {
     free(v2);
     free(res);
 
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
-
-    std::cout << "After AVX acceleration, time taken: " << duration.count() << " milliseconds" << std::endl;
+    std::cout << "After AVX acceleration, execution time taken: " << duration.count() << " milliseconds" << std::endl;
     return 0;
 }

@@ -7,28 +7,48 @@
 
 int main()
 {
-    std::fstream inf("vecmult.in");
-    std::fstream ouf("vecmulto.out");
+    std::fstream inf("vmm1.in");
+    std::fstream ouf("vmmo1.out");
     int n;
     inf >> n;
-    int * v1 = (int *)aligned_alloc(32, n * sizeof(int));
-    int * v2 = (int *)aligned_alloc(32, n * sizeof(int));
+    int * v = (int *)aligned_alloc(32, n * sizeof(int));
+    int * m = (int *)aligned_alloc(32, n * n * sizeof(int*));
     int * res = (int *)aligned_alloc(32, n * sizeof(int));
+
+
+    for(int i = 0; i < n * n; i++)
+    {
+        inf >> m[i];
+    }
 
     for(int i = 0; i < n; i++)
     {
-        inf >> v1[i];
+        inf >> v[i];
     }
-    for(int i = 0; i < n; i++)
+
+    for(int i = 0; i < n * n / 4; i++)
     {
-        inf >> v2[i];
+        for(int j = 0; j < 4; j++)
+        {
+            std::cout << "*(m + j) is " << *(m) << std::endl; 
+            std::cout << "*(v + j) is " << *(v) << std::endl; 
+            m++;
+            v++;
+        }
     }
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
+    int sum = 0;
+
     for(int i = 0; i < n; i++)
     {
-        res[i] = v1[i] * v2[i];
+        sum = 0;
+        for(int j = 0; j < n; j++)
+        {
+            sum += m[i * n + j] * v[j];
+        }    
+        res[i] = sum;
     }
 
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -39,8 +59,8 @@ int main()
         ouf << res[i] << " ";
     }
 
-    free(v1);
-    free(v2);
+    free(v);
+    free(m);
     free(res);
 
     std::cout << "Before AVX acceleration, execution time taken: " << duration.count() << " milliseconds" << std::endl;

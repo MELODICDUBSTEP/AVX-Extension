@@ -7,13 +7,13 @@
 
 int main()
 {
-    std::fstream inf("vmm1.in");
-    std::fstream ouf("vmmo1.out");
+    std::fstream inf("vmm.in");
+    std::fstream ouf("vmmo.out");
     int n;
     inf >> n;
-    int * v = (int *)aligned_alloc(32, n * sizeof(int));
-    int * m = (int *)aligned_alloc(32, n * n * sizeof(int*));
-    int * res = (int *)aligned_alloc(32, n * sizeof(int));
+    long long * v = (long long *)aligned_alloc(64, n * sizeof(long long));
+    long long * m = (long long *)aligned_alloc(64, n * n * sizeof(long long));
+    long long * res = (long long *)aligned_alloc(64, n * sizeof(long long));
 
 
     for(int i = 0; i < n * n; i++)
@@ -26,20 +26,9 @@ int main()
         inf >> v[i];
     }
 
-    for(int i = 0; i < n * n / 4; i++)
-    {
-        for(int j = 0; j < 4; j++)
-        {
-            std::cout << "*(m + j) is " << *(m) << std::endl; 
-            std::cout << "*(v + j) is " << *(v) << std::endl; 
-            m++;
-            v++;
-        }
-    }
-
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    int sum = 0;
+    long long sum = 0;
 
     for(int i = 0; i < n; i++)
     {

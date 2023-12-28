@@ -75,96 +75,6 @@ auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time -
 
 我的实验数据如下：
 
-1.数据大小 N = 4096 * 256
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_0cb8fbce1d8376ae260260572acfde10.png)
-
-加速效果： 80%
-
-2.数据大小 N = 4096 * 512
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_6ed6fb33942d6cf492d7c0b608cdd128.png)
-
-加速效果：77.8%
-
-3.数据大小 N = 4096 * 1024
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_1320db1a61b88fac43db6f77917edc04.png)
-
-加速效果： 61.2%
-
-4.数据大小 N = 4096 * 2048
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_8a1dbacba4109ae4becc6439a99237ea.png)
-
-加速效果： 54.1%
-
-5.数据大小 N = 4096 * 4096
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_22b786535497e59b4c515243da69c1ad.png)
-
-
-加速效果： 43.0%
-
-5.数据大小 N = 4096 * 4096 * 2
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_b1bf6f4faf547cc92988c04cbb34d189.png)
-
-
-加速效果： 42.3%
-
-5.数据大小 N = 4096 * 4096 * 4
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_8de0155235cab41be2ad06fc3ba469da.png)
-
-
-加速效果： 58.1%
-
-5.数据大小 N = 4096 * 4096 * 8
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_195c26554bcc2e8c7e1cc6a72c655bf0.png)
-
-
-加速效果： 57.5%
-
-5.数据大小 N = 4096 * 4096 * 16
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_65500f35ea516330cf963978086e8aa0.png)
-
-
-加速效果： 65.4%
-
-6.数据大小 N = 4096 * 4096 * 32
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_921f0420a9d6d4c1d9504d4637579c16.png)
-
-
-加速效果： 54.0%
-
-
-
-
-列出数据表格如下：
 
 | 数据大小 N       | 加速前执行时间 / milliseconds |  加速后执行时间 / milliseconds | 加速效果 |
 |--------|--------|--------|--|
@@ -276,34 +186,6 @@ g++ -O0 -o vo ./vmmo.cpp
 我同样使用了C++中的 chrono 库记录程序从输入完毕开始到准备输出所经过的执行时间。
 
 我的实验数据如下：
-
-1.数据大小 N = 4096 
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_fd01a5798420e2129b2498b633cb4f27.png)
-
-加速效果：50%
-
-2.数据大小 N = 4096 * 2
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_a46ba66dcd03fd4c39f139c213a4ce5a.png)
-
-加速效果：42.9%
-
-3.数据大小 N = 4096 * 4
-
-执行时间：
-
-![](https://notes.sjtu.edu.cn/uploads/upload_b5e95843131ac6e92ae52ee695551606.png)
-
-加速效果： 50.8%
-
-数据更大之后内存无法容纳。
-
-列出数据表格如下：
 
 | 数据大小 N | 加速前执行时间 / milliseconds |  加速后执行时间 / milliseconds | 加速效果 |
 |--------|--------|--------|--|
